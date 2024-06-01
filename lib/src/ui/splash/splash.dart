@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:grocery_app/src/navigation/routes.dart';
 import 'package:grocery_app/src/utils/colors.dart';
+import 'package:grocery_app/src/utils/constants.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
-import 'package:sizer/sizer.dart';
+import 'package:grocery_app/src/utils/utils.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
-  State<StatefulWidget> createState() => SplashPageContent();
+  State<SplashPage> createState() => SplashPageContent();
 }
 
 class SplashPageContent extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      Future.delayed(Constants.SPLASH_DELAY, () {
+        Get.toNamed(Routes.homeRoute);
+        Utils.setupSystemBarIcons(
+          statusBarColor: Colors.transparent,
+          navigationBarColor: Colors.black,
+        );
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
