@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/src/navigation/routes.dart';
-import 'package:grocery_app/src/utils/colors.dart';
 import 'package:grocery_app/src/utils/constants.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/utils.dart';
@@ -17,13 +16,13 @@ class SplashPageContent extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
+    Utils.setupSystemBarIcons(
+        statusBarColor: Colors.transparent,
+        navigationBarColor: Colors.white,
+        statusBarDarkIcons: Brightness.light);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       Future.delayed(Constants.SPLASH_DELAY, () {
-        Get.toNamed(Routes.homeRoute);
-        Utils.setupSystemBarIcons(
-          statusBarColor: Colors.transparent,
-          navigationBarColor: Colors.black,
-        );
+        Get.toNamed(Routes.MAIN_SCREEN);
       });
     });
   }
@@ -31,7 +30,7 @@ class SplashPageContent extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.PRIMARY_COLOR,
+        backgroundColor: context.theme.colorScheme.primary,
         body: SafeArea(
           child: Column(children: [
             Expanded(

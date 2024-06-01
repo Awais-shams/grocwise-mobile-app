@@ -27,4 +27,6 @@ class Utils {
       ),
     );
   }
+
+  static bool needSaveArea() => Get.mediaQuery.viewPadding.bottom > 0;
 }

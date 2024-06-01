@@ -18,3 +18,13 @@ extension IntCasingExtension on int {
     return this * (SizerUtil.width / scaleFactor) / 100;
   }
 }
+
+extension IterableExtension on Iterable {
+  Iterable<R>? mapIndexed<R, T>(
+      R Function(int index, T element) convert) sync* {
+    var index = 0;
+    for (var element in this) {
+      yield convert(index++, element);
+    }
+  }
+}
