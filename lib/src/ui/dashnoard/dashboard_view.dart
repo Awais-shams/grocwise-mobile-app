@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:grocery_app/base/base_screen.dart';
 import 'package:grocery_app/src/services/services.dart';
 import 'package:grocery_app/src/ui/home/home_view.dart';
+import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/constants.dart';
-import 'package:grocery_app/src/utils/dimensions.dart';
-import 'package:grocery_app/src/utils/styles.dart';
 import 'package:grocery_app/src/utils/utils.dart';
 import 'package:grocery_app/src/widgets/bottom_nav_bar.dart';
-import 'package:sizer/sizer.dart';
+import 'package:grocery_app/src/widgets/toolbar.dart';
 
 class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
@@ -20,19 +20,16 @@ final pages = [
   const HomeView(),
 ];
 
-class DashboardContent extends State<DashboardView> {
+class DashboardContent extends BaseScreen<DashboardView, HomeVM>
+    with AutomaticKeepAliveClientMixin {
   final PageController pageController = PageController(initialPage: 0);
   final GlobalKey<BottomNavBarState> key = GlobalKey<BottomNavBarState>();
 
   String screenName = "Products";
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       color: context.theme.colorScheme.onSurface,
       child: SafeArea(
@@ -42,26 +39,11 @@ class DashboardContent extends State<DashboardView> {
           onWillPop: _handleBackPress,
           child: Scaffold(
             extendBody: true,
+            resizeToAvoidBottomInset: false,
             backgroundColor: context.theme.colorScheme.onSurface,
             body: Column(
               children: [
-                Container(
-                  height: Dimensions.TOOLBAR_HEIGHT,
-                  width: 100.w,
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.fromLTRB(
-                      Dimensions.TEXT_SIZE_HEADING,
-                      Dimensions.HORIZONTAL_PADDING,
-                      Dimensions.HORIZONTAL_PADDING,
-                      0),
-                  decoration:
-                      BoxDecoration(color: context.theme.colorScheme.primary),
-                  child: Text(screenName,
-                      style: Styles.customStyle(
-                              textSize: TextSize.HEADING,
-                              textWeight: TextWeight.BOLD)
-                          ?.apply(color: Colors.white)),
-                ),
+                ToolBar(screenName: screenName),
                 Expanded(
                   child: PageView(
                     physics: const NeverScrollableScrollPhysics(),
@@ -95,7 +77,16 @@ class DashboardContent extends State<DashboardView> {
     } else {
       pageController.jumpToPage(Constants.HOME);
       key.currentState?.onSelectionChanged(Constants.HOME);
+      setState(() {
+        screenName = "Products";
+      });
       return false;
     }
   }
+
+  @override
+  void updateKeepAlive() {}
+
+  @override
+  bool get wantKeepAlive => true;
 }

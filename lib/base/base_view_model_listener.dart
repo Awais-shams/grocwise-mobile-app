@@ -1,0 +1,4 @@
+mixin BaseVMlListeners {
+  onSessionExpired() {}
+  onLogoutSuccess() {}
+}

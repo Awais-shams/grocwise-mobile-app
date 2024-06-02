@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const COLOR_INFO = Color(0xffFFF3CD);
+  static const COLOR_SEARCH = Color(0xffF4F5F7);
   static const COLOR_INFO_TEXT = Color(0xff664D03);
   static const COLOR_INFO_TEXT_RED = Color(0xff842029);
   static const COLOR_INFO_RED = Color(0xffF8D7D8);
@@ -15,6 +15,8 @@ class AppColors {
   static const COLOR_DATABASE = Color(0xff606b83);
   static const GREEN_PROGRESS = Color(0xff4DC921);
   static const PRIMARY_COLOR = Color(0xff1A3420);
+  static const SECONDARY_COLOR = Color(0xff232323);
+  static const TEXT_DISCRIPTION_COLOR = Color(0xffBABABA);
 }
 
 class LightThemeColors {

@@ -24,7 +24,7 @@ class BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 15.h,
+      height: 12.h,
       child: Stack(
         children: [
           // Your main content here

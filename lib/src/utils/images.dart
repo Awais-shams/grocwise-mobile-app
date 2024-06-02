@@ -9,4 +9,8 @@ mixin AppImages {
   static const String SHOPPING_SELECTED = "$_basePath/shopping_selected.svg";
 
   static const String PHONE_SELECTED = "$_basePath/phone_selected.svg";
+
+  static const String DUMMY_PRODUCT = "$_basePath/dummy_product.svg";
+
+  static String getDummyImage() => DUMMY_PRODUCT;
 }

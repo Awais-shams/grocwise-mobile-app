@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:grocery_app/src/utils/colors.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/styles.dart';
 import 'package:grocery_app/src/widgets/icon_button.dart';
@@ -35,7 +36,7 @@ class InputField extends StatelessWidget {
     this.onEndIconClicked,
     this.inputDecoration,
     this.onTap,
-    this.inputFieldFillColor = Colors.transparent,
+    this.inputFieldFillColor = AppColors.COLOR_SEARCH,
     this.obscureText = false,
     this.shouldValidate = false,
     this.startBoxConstraint,
