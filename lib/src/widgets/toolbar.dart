@@ -18,8 +18,8 @@ class ToolBar extends StatelessWidget {
       height: Dimensions.TOOLBAR_HEIGHT,
       width: 100.w,
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.fromLTRB(Dimensions.TEXT_SIZE_MEDIUM,
-          Get.mediaQuery.viewPadding.top, Dimensions.HORIZONTAL_PADDING, 10),
+      padding: EdgeInsets.fromLTRB(
+          Dimensions.TEXT_SIZE_MEDIUM, 0, Dimensions.HORIZONTAL_PADDING, 10),
       decoration: BoxDecoration(color: context.theme.colorScheme.primary),
       child: Column(
         children: [
