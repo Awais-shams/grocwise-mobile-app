@@ -16,7 +16,8 @@ class AppColors {
   static const GREEN_PROGRESS = Color(0xff4DC921);
   static const PRIMARY_COLOR = Color(0xff1A3420);
   static const SECONDARY_COLOR = Color(0xff232323);
-  static const TEXT_DISCRIPTION_COLOR = Color(0xffBABABA);
+  static const TEXT_DESCRIPTION_COLOR = Color(0xffBABABA);
+  static const BORDER_COLOR = Color(0xffEBEBEB);
 }
 
 class LightThemeColors {

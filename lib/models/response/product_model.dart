@@ -2,7 +2,7 @@ class ProductModel {
   ProductModel({
     this.productId,
     this.productName,
-    this.productDiscription,
+    this.productDescription,
     this.productImage,
     this.productPrice,
     this.productQuantity,
@@ -11,7 +11,7 @@ class ProductModel {
   ProductModel.fromJson(dynamic json) {
     productId = json['product_id'];
     productName = json['product_name'];
-    productDiscription = json['product_discription'];
+    productDescription = json['product_description'];
     productImage = json['product_image'];
     productPrice = json['product_price'];
     productQuantity = json['product_quantity'];
@@ -19,7 +19,7 @@ class ProductModel {
 
   int? productId;
   String? productName;
-  String? productDiscription;
+  String? productDescription;
   String? productImage;
   String? productPrice;
   String? productQuantity;
@@ -27,7 +27,7 @@ class ProductModel {
   ProductModel copyWith({
     int? productId,
     String? productName,
-    String? productDiscription,
+    String? productDescription,
     String? productImage,
     String? productPrice,
     String? productQuantity,
@@ -35,7 +35,7 @@ class ProductModel {
       ProductModel(
           productId: productId ?? this.productId,
           productName: productName ?? this.productName,
-          productDiscription: productDiscription ?? this.productDiscription,
+          productDescription: productDescription ?? this.productDescription,
           productImage: productImage ?? this.productImage,
           productPrice: productPrice ?? this.productPrice,
           productQuantity: productQuantity ?? this.productQuantity);
@@ -44,7 +44,7 @@ class ProductModel {
     final map = <String, dynamic>{};
     map['product_id'] = productId;
     map['product_name'] = productName;
-    map['product_discription'] = productDiscription;
+    map['product_description'] = productDescription;
     map['product_image'] = productImage;
     map['product_price'] = productPrice;
     return map;

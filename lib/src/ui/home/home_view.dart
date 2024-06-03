@@ -69,7 +69,9 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
                               25.marginVertical,
                           itemBuilder: (context, index) => GestureDetector(
                                 onTap: () {
-                                  gotoScreen(Routes.PRODUCT_DETAIL);
+                                  gotoScreen(Routes.PRODUCT_DETAIL, arguments: {
+                                    'product': value.products[index],
+                                  });
                                 },
                                 child: _getItem(index, value.products[index]),
                               ));
@@ -130,12 +132,12 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
                           ),
                           5.marginVertical,
                           Text(
-                            product.productDiscription ?? "",
+                            product.productDescription ?? "",
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
                               fontSize: Dimensions.TEXT_SIZE_SMALL,
-                              color: AppColors.TEXT_DISCRIPTION_COLOR,
+                              color: AppColors.TEXT_DESCRIPTION_COLOR,
                               fontFamily: 'Plus Jakarta Sans',
                               fontWeight: FontWeight.w400,
                             ),

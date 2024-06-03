@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:grocery_app/src/utils/colors.dart';
 import 'package:grocery_app/src/utils/dimensions.dart';
 
 enum TextWeight { NORMAL, MEDIUM, BOLD }
@@ -43,7 +44,16 @@ class Styles {
                     ? Get.theme.colorScheme.onInverseSurface
                     : Get.theme.colorScheme.onPrimary,
       );
-
+  static TextStyle textStyle(
+          {Color color = AppColors.SECONDARY_COLOR,
+          double fontSize = 10,
+          FontWeight fontWeight = FontWeight.w600}) =>
+      TextStyle(
+        fontSize: fontSize,
+        color: color,
+        fontFamily: 'Plus Jakarta Sans',
+        fontWeight: fontWeight,
+      );
   static getLogbookHeadingStyle() => TextStyle(
         color: Get.context!.theme.colorScheme.onInverseSurface,
         fontWeight: FontWeight.w600,

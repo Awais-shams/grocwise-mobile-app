@@ -11,7 +11,7 @@ class HomeVM extends BaseViewModel<HomeVMListeners> {
   var product = ProductModel(
       productId: 1,
       productName: "Product Name",
-      productDiscription:
+      productDescription:
           "Lorem Ipsum is simply dummy text of the printing and type setting lorem Ipsum.",
       productImage:
           "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSYj-vikGnJNyxtRFw3wG7J6fdo43Wfs8J196yHIukwqfj24W3m",

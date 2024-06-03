@@ -5,8 +5,6 @@ import 'package:grocery_app/src/services/services.dart';
 import 'package:grocery_app/src/ui/home/home_view.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/constants.dart';
-import 'package:grocery_app/src/utils/extensions.dart';
-import 'package:grocery_app/src/utils/utils.dart';
 import 'package:grocery_app/src/widgets/bottom_nav_bar.dart';
 import 'package:grocery_app/src/widgets/toolbar.dart';
 
