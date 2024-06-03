@@ -90,32 +90,27 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
                           borderRadius: 10,
                           color: context.theme.colorScheme.onSurface,
                           sideColor: AppColors.BORDER_COLOR,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 10, top: 15, right: 10, bottom: 15),
+                            child: RichText(
+                              textAlign: TextAlign.start,
+                              text: TextSpan(
+                                text: "\$${product?.productPrice}",
+                                style: Styles.textStyle(
+                                    fontSize: Dimensions.TEXT_SIZE_LARGE,
+                                    fontWeight: FontWeight.w500),
                                 children: [
-                                  RichText(
-                                    textAlign: TextAlign.start,
-                                    text: TextSpan(
-                                      text: "\$${product?.productPrice}",
-                                      style: Styles.textStyle(
-                                          fontSize: Dimensions.TEXT_SIZE_LARGE,
-                                          fontWeight: FontWeight.w500),
-                                      children: [
-                                        TextSpan(
-                                          text: "/Item ",
-                                          style: Styles.textStyle(
-                                              fontSize: Dimensions
-                                                  .TEXT_SIZE_SEMI_LARGE,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ],
-                                    ),
+                                  TextSpan(
+                                    text: " /Item ",
+                                    style: Styles.textStyle(
+                                        fontSize:
+                                            Dimensions.TEXT_SIZE_SEMI_LARGE,
+                                        fontWeight: FontWeight.w400),
                                   ),
                                 ],
-                              )
-                            ],
+                              ),
+                            ),
                           ),
                         ),
                         10.marginVertical,
