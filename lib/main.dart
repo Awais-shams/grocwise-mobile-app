@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:grocery_app/base/base_view_model.dart';
 import 'package:grocery_app/src/navigation/routes.dart';
 import 'package:grocery_app/src/services/internet_service.dart';
-import 'package:grocery_app/src/ui/dashnoard/dashboard_view.dart';
+import 'package:grocery_app/src/ui/dashboard/dashboard_view.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/ui/product_detail/product_detail.dart';
 import 'package:grocery_app/src/ui/splash/splash.dart';

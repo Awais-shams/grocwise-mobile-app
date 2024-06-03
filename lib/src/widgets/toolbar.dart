@@ -19,32 +19,37 @@ class ToolBar extends StatelessWidget {
       width: 100.w,
       alignment: Alignment.centerLeft,
       padding: EdgeInsets.fromLTRB(Dimensions.TEXT_SIZE_MEDIUM,
-          Dimensions.HORIZONTAL_PADDING, Dimensions.HORIZONTAL_PADDING, 0),
+          Get.mediaQuery.viewPadding.top, Dimensions.HORIZONTAL_PADDING, 10),
       decoration: BoxDecoration(color: context.theme.colorScheme.primary),
-      child: Row(
+      child: Column(
         children: [
-          showStartIcon == false
-              ? const SizedBox(width: 10, height: 35)
-              : Material(
-                  borderRadius: BorderRadius.circular(12),
-                  color: context.theme.colorScheme.primary,
-                  child: CustomIconButton(
-                    radius: BorderRadius.circular(25),
-                    size: const Size.fromRadius(25),
-                    onTap: () => Get.back(),
-                    widget: Icon(
-                      Icons.arrow_back,
-                      color: context.theme.colorScheme.onSurface,
-                      size: Dimensions.TOOLBAR_ICON_SIZE,
+          Row(
+            children: [
+              showStartIcon == false
+                  ? const SizedBox(width: 10, height: 35)
+                  : Material(
+                      borderRadius: BorderRadius.circular(12),
+                      color: context.theme.colorScheme.primary,
+                      child: CustomIconButton(
+                        radius: BorderRadius.circular(25),
+                        size: const Size.fromRadius(25),
+                        onTap: () => Get.back(),
+                        widget: Icon(
+                          Icons.arrow_back,
+                          color: context.theme.colorScheme.onSurface,
+                          size: Dimensions.TOOLBAR_ICON_SIZE,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-          showStartIcon ? 20.marginHorizontal : Container(),
-          Expanded(
-            child: Text(screenName,
-                style: Styles.customStyle(
-                        textSize: TextSize.HEADING, textWeight: TextWeight.BOLD)
-                    ?.apply(color: Colors.white)),
+              showStartIcon ? 20.marginHorizontal : Container(),
+              Expanded(
+                child: Text(screenName,
+                    style: Styles.customStyle(
+                            textSize: TextSize.HEADING,
+                            textWeight: TextWeight.BOLD)
+                        ?.apply(color: Colors.white)),
+              ),
+            ],
           ),
         ],
       ),

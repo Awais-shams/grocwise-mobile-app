@@ -5,6 +5,7 @@ import 'package:grocery_app/src/services/services.dart';
 import 'package:grocery_app/src/ui/home/home_view.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/constants.dart';
+import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/utils.dart';
 import 'package:grocery_app/src/widgets/bottom_nav_bar.dart';
 import 'package:grocery_app/src/widgets/toolbar.dart';
@@ -32,35 +33,31 @@ class DashboardContent extends BaseScreen<DashboardView, HomeVM>
     super.build(context);
     return Container(
       color: context.theme.colorScheme.onSurface,
-      child: SafeArea(
-        bottom: !Utils.needSaveArea(),
-        top: Utils.needSaveArea(),
-        child: WillPopScope(
-          onWillPop: _handleBackPress,
-          child: Scaffold(
-            extendBody: true,
-            resizeToAvoidBottomInset: false,
-            backgroundColor: context.theme.colorScheme.onSurface,
-            body: Column(
-              children: [
-                ToolBar(screenName: screenName),
-                Expanded(
-                  child: PageView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    controller: pageController,
-                    children: pages,
-                  ),
+      child: WillPopScope(
+        onWillPop: _handleBackPress,
+        child: Scaffold(
+          extendBody: true,
+          resizeToAvoidBottomInset: false,
+          backgroundColor: context.theme.colorScheme.onSurface,
+          body: Column(
+            children: [
+              ToolBar(screenName: screenName),
+              Expanded(
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: pageController,
+                  children: pages,
                 ),
-                BottomNavBar(
-                    key: key,
-                    onItemSelected: (m) {
-                      setState(() {
-                        screenName = m.title;
-                      });
-                      pageController.jumpToPage(m.index);
-                    }),
-              ],
-            ),
+              ),
+              BottomNavBar(
+                  key: key,
+                  onItemSelected: (m) {
+                    setState(() {
+                      screenName = m.title;
+                    });
+                    pageController.jumpToPage(m.index);
+                  }),
+            ],
           ),
         ),
       ),

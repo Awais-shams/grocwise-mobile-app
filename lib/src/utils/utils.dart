@@ -31,6 +31,7 @@ class Utils {
   }
 
   static bool needSaveArea() => Get.mediaQuery.viewPadding.bottom > 0;
+  static bool needSaveAreaTop() => Get.mediaQuery.viewPadding.top > 0;
   static void showCustomDialog(
     Widget dialog, {
     Color? backgroundColor,
