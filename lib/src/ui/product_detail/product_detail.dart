@@ -33,6 +33,8 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
   Widget build(BuildContext context) {
     super.build(context);
     return Container(
+      width: Get.width,
+      height: Get.height,
       color: context.theme.colorScheme.onSurface,
       child: WillPopScope(
         onWillPop: () async {
@@ -43,90 +45,94 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
           extendBody: true,
           resizeToAvoidBottomInset: false,
           backgroundColor: context.theme.colorScheme.onSurface,
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const ToolBar(
-                    screenName: "Product",
-                    showStartIcon: true,
-                  ),
-                  const Padding(padding: EdgeInsets.only(top: 5)),
-                  CircularNetworkImage(
-                    url: Constants.DEFAULT_IMAGE,
-                    radius: 10,
-                    applyRadiusOnBottom: true,
-                    height: 20.h,
-                    width: Get.width,
-                    fit: BoxFit.contain,
-                  ),
-                  10.marginVertical,
-                  Text(product?.productName ?? "",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: Styles.textStyle(
-                        fontSize: Dimensions.TEXT_SIZE_LARGE,
-                        fontWeight: FontWeight.w600,
-                      )),
-                  10.marginVertical,
-                  Text("Price",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: Styles.textStyle(
-                        fontSize: Dimensions.TEXT_SIZE_LARGE,
-                        fontWeight: FontWeight.w600,
-                      )),
-                  10.marginVertical,
-                  RoundedCard(
-                    borderRadius: 10,
-                    sideColor: AppColors.BORDER_COLOR,
-                    child: Column(
-                      children: [
-                        Row(
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const ToolBar(
+                  screenName: "Product",
+                  showStartIcon: true,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircularNetworkImage(
+                        url: Constants.DEFAULT_IMAGE,
+                        radius: 10,
+                        applyRadiusOnBottom: true,
+                        height: 20.h,
+                        width: Get.width,
+                        fit: BoxFit.contain,
+                      ),
+                      10.marginVertical,
+                      Text(product?.productName ?? "",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: Styles.textStyle(
+                            fontSize: Dimensions.TEXT_SIZE_LARGE,
+                            fontWeight: FontWeight.w600,
+                          )),
+                      10.marginVertical,
+                      Text("Price",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: Styles.textStyle(
+                            fontSize: Dimensions.TEXT_SIZE_LARGE,
+                            fontWeight: FontWeight.w600,
+                          )),
+                      10.marginVertical,
+                      RoundedCard(
+                        borderRadius: 10,
+                        color: context.theme.colorScheme.onSurface,
+                        sideColor: AppColors.BORDER_COLOR,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            RichText(
-                              textAlign: TextAlign.start,
-                              text: TextSpan(
-                                text: "\$${product?.productPrice}",
-                                style: Styles.textStyle(
-                                    fontSize: Dimensions.TEXT_SIZE_LARGE,
-                                    fontWeight: FontWeight.w500),
-                                children: [
-                                  TextSpan(
-                                    text: "/Item ",
+                            Row(
+                              children: [
+                                RichText(
+                                  textAlign: TextAlign.start,
+                                  text: TextSpan(
+                                    text: "\$${product?.productPrice}",
                                     style: Styles.textStyle(
-                                        fontSize:
-                                            Dimensions.TEXT_SIZE_SEMI_LARGE,
-                                        fontWeight: FontWeight.w400),
+                                        fontSize: Dimensions.TEXT_SIZE_LARGE,
+                                        fontWeight: FontWeight.w500),
+                                    children: [
+                                      TextSpan(
+                                        text: "/Item ",
+                                        style: Styles.textStyle(
+                                            fontSize:
+                                                Dimensions.TEXT_SIZE_SEMI_LARGE,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
-                            ),
+                                ),
+                              ],
+                            )
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                      10.marginVertical,
+                      Text("Description",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: Styles.textStyle(
+                            fontSize: Dimensions.TEXT_SIZE_LARGE,
+                            fontWeight: FontWeight.w600,
+                          )),
+                      10.marginVertical,
+                      Text(product?.productDescription ?? "",
+                          style: Styles.textStyle(
+                            fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
+                            fontWeight: FontWeight.w400,
+                          )),
+                    ],
                   ),
-                  10.marginVertical,
-                  Text("Description",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: Styles.textStyle(
-                        fontSize: Dimensions.TEXT_SIZE_LARGE,
-                        fontWeight: FontWeight.w600,
-                      )),
-                  10.marginVertical,
-                  Text(product?.productDescription ?? "",
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: Styles.textStyle(
-                        fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
