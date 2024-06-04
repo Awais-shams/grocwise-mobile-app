@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:grocery_app/base/base_screen.dart';
 import 'package:grocery_app/src/services/services.dart';
 import 'package:grocery_app/src/ui/about_us/about_us_view.dart';
+import 'package:grocery_app/src/ui/contact_us/contact_us_view.dart';
 import 'package:grocery_app/src/ui/home/home_view.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/constants.dart';
@@ -17,10 +18,7 @@ class DashboardView extends StatefulWidget {
   State<DashboardView> createState() => DashboardContent();
 }
 
-final pages = [
-  const HomeView(),
-  const AboutUsView(),
-];
+final pages = [const HomeView(), const AboutUsView(), const ContactUsView()];
 
 class DashboardContent extends BaseScreen<DashboardView, HomeVM>
     with AutomaticKeepAliveClientMixin {
