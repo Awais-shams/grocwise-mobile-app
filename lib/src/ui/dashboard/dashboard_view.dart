@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/base/base_screen.dart';
 import 'package:grocery_app/src/services/services.dart';
+import 'package:grocery_app/src/ui/about_us/about_us_view.dart';
 import 'package:grocery_app/src/ui/home/home_view.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/constants.dart';
@@ -18,6 +19,7 @@ class DashboardView extends StatefulWidget {
 
 final pages = [
   const HomeView(),
+  const AboutUsView(),
 ];
 
 class DashboardContent extends BaseScreen<DashboardView, HomeVM>

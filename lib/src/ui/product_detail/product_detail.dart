@@ -72,7 +72,7 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
                         10.marginVertical,
                         Text(product?.productName ?? "",
                             overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                            maxLines: 2,
                             style: Styles.textStyle(
                               fontSize: Dimensions.TEXT_SIZE_LARGE,
                               fontWeight: FontWeight.w600,
