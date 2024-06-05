@@ -19,7 +19,7 @@ class SplashPageContent extends State<SplashPage> {
     Utils.setupSystemBarIcons(
         statusBarColor: Colors.transparent,
         navigationBarColor: Colors.white,
-        statusBarDarkIcons: Brightness.light);
+        statusBarDarkIcons: Brightness.dark);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       Future.delayed(Constants.SPLASH_DELAY, () {
         Get.toNamed(Routes.MAIN_SCREEN);

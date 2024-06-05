@@ -20,10 +20,8 @@ class Utils {
         statusBarColor: statusBarColor,
         systemNavigationBarColor:
             navigationBarColor ?? theme.colorScheme.surface,
-        statusBarIconBrightness: statusBarDarkIcons ??
-            (darkTheme ? Brightness.light : Brightness.dark),
-        statusBarBrightness: statusBarDarkIcons ??
-            (darkTheme ? Brightness.dark : Brightness.light),
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: navigationBarDarkIcons ??
             (darkTheme ? Brightness.dark : Brightness.light),
       ),
