@@ -66,7 +66,8 @@ class BottomNavBarState extends State<BottomNavBar> {
                             children: [
                               isSelected
                                   ? Container(
-                                      margin: EdgeInsets.only(bottom: 5.0),
+                                      margin:
+                                          const EdgeInsets.only(bottom: 5.0),
                                       height: 50,
                                       width: 50,
                                       decoration: BoxDecoration(
@@ -84,7 +85,8 @@ class BottomNavBarState extends State<BottomNavBar> {
                                             BlendMode.srcIn,
                                           ),
                                         ),
-                                      ))
+                                      ),
+                                    )
                                   : SvgPicture.asset(
                                       element.iconName,
                                       height: 25,

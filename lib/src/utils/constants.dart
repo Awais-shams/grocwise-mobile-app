@@ -15,13 +15,17 @@ mixin Constants {
   static const SPLASH_DELAY = Duration(milliseconds: 2000);
   //Bottom nav request codes
   static const HOME = 0;
-  static const SHOPPING = 1;
-  static const INFO = 2;
-  static const PHONE = 3;
+  static const INFO = 1;
+  static const PHONE = 2;
 
   static final List<NavModel> BOTTOM_NAV_ITEMS = [
     NavModel('Products', HOME, AppImages.HOME_SELECTED),
     NavModel('About Us', INFO, AppImages.INFO_SELECTED),
     NavModel('Contact Us', PHONE, AppImages.PHONE_SELECTED),
   ];
+  static const CONTACT_US_HEADING = "We have been expecting you here.";
+  static const CONTACT_US_SECOND = "Let’s do it together";
+  static const CONTACT_US_THIRD = "Connect over here";
+  static const DEFAULT_TEXT =
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries";
 }
