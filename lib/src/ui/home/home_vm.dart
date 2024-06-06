@@ -16,7 +16,8 @@ class HomeVM extends BaseViewModel<HomeVMListeners> {
       productImage:
           "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSYj-vikGnJNyxtRFw3wG7J6fdo43Wfs8J196yHIukwqfj24W3m",
       productPrice: "200",
-      productQuantity: "2 Container");
+      productQuantity: "2 Container",
+      categoryTitle: "food cupboard");
   refresh() async {
     products.add(product);
     products.add(product);

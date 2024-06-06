@@ -13,10 +13,12 @@ import 'package:grocery_app/src/utils/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
-  runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+      url: Constants.SUPABASE_URL, anonKey: Constants.ANON_KEY);
   await SentryFlutter.init(
     (options) {
       options.dsn = Constants.SENTRY_DNS;

@@ -88,7 +88,7 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minHeight: 60.0, // Minimum height
-        maxHeight: 120.0, // Maximum height
+        maxHeight: 130.0, // Maximum height
       ),
       child: IntrinsicHeight(
         child: Container(
@@ -128,6 +128,28 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
                               color: AppColors.SECONDARY_COLOR,
                               fontFamily: 'Plus Jakarta Sans',
                               fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          5.marginVertical,
+                          RichText(
+                            textAlign: TextAlign.start,
+                            text: TextSpan(
+                              text: "Category: ",
+                              style: Styles.textStyle(
+                                  fontSize: Dimensions.TEXT_SIZE_MEDIUM,
+                                  color: context.theme.colorScheme.primary,
+                                  fontWeight: FontWeight.w500),
+                              children: [
+                                TextSpan(
+                                  text: product.categoryTitle ?? "",
+                                  style: TextStyle(
+                                    fontSize: Dimensions.TEXT_SIZE_SMALL,
+                                    color: context.theme.colorScheme.tertiary,
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           5.marginVertical,

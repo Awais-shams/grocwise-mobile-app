@@ -7,6 +7,9 @@ mixin Constants {
   static const API_FAILURE = 'error';
   static const API_SESSION_EXPIRE = 'sessionExpire';
   static const INTERNET_ERROR = 'internetError';
+  static const SUPABASE_URL = 'https://dccrgihucwbxscdoyhof.supabase.co';
+  static const ANON_KEY =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRjY3JnaWh1Y3dieHNjZG95aG9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI0Njc2NzcsImV4cCI6MjAyODA0MzY3N30.javskma9oPUTZ6QRC6omBjp4XnewmYuWcKawMD8BsYA';
   static const SENTRY_DNS =
       'https://b726b769c3b7bf7dc04d8d1808153ff2@o4504396355272704.ingest.sentry.io/4505917394649088';
   static const DEFAULT_IMAGE =
