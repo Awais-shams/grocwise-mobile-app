@@ -1,21 +1,15 @@
 import 'package:grocery_app/base/base_remote_repo.dart';
-import 'package:grocery_app/models/response/base_response.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:grocery_app/main.dart';
+import 'package:grocery_app/models/response/product_model.dart';
 
 class HomeRR extends BaseRemoteRepo {
-  //final SupabaseClient supabaseClient = Supabase.instance.client;
-  // Future<BaseResponse> getSuperData() async {
-  //   final response = await supabaseClient
-  //       .from('items')
-  //       .select()
-  //       .limit(30)
-  //       .execute();
-  //   if (response.haveError() == false) {
-  //     response.data = SuperData.fromJson(response.data)
-  //       ..populateCountryAndStates();
-  //   }
-  //   return response;
-  // }
+  Future<List<ProductModel>> getSuperData() async {
+    print("here");
+    final response =
+        await supabase.from('combined_products').select('*').limit(10);
+    var data = response.map((data) => ProductModel.fromJson(data)).toList();
+    return data;
+  }
   //  final response = await supabase
   //       .from('items')
   //       .select()

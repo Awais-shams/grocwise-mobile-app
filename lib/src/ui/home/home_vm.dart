@@ -18,7 +18,8 @@ class HomeVM extends BaseViewModel<HomeVMListeners> {
       productPrice: "200",
       productQuantity: "2 Container",
       categoryTitle: "food cupboard");
-  refresh() async {
+  Future refresh() async {
+    products = await homeRR.getSuperData();
     products.add(product);
     products.add(product);
     products.add(product);
