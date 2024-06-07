@@ -6,7 +6,8 @@ class HomeRR extends BaseRemoteRepo {
   Future<List<ProductModel>> getSuperData() async {
     print("here");
     final response =
-        await supabase.from('combined_products').select('*').limit(10);
+        await supabase.from('combined_products').select().limit(10);
+    print("Response:: $response");
     var data = response.map((data) => ProductModel.fromJson(data)).toList();
     return data;
   }
