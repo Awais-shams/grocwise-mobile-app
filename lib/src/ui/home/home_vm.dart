@@ -20,12 +20,13 @@ class HomeVM extends BaseViewModel<HomeVMListeners> {
       categoryTitle: "food cupboard");
   Future refresh() async {
     products = await homeRR.getSuperData();
-    products.add(product);
-    products.add(product);
-    products.add(product);
-    products.add(product);
-    products.add(product);
-    products.add(product);
+    print("Products:: $products");
+    // products.add(product);
+    // products.add(product);
+    // products.add(product);
+    // products.add(product);
+    // products.add(product);
+    // products.add(product);
     notifyListeners();
   }
 

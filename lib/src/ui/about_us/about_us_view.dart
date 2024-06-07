@@ -42,7 +42,8 @@ class AboutUsViewContent extends BaseScreen<AboutUsView, HomeVM>
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: SizedBox(
-                    width: 40, // Adjust width as needed
+                    width: 40,
+                    height: 30, // Adjust width as needed
                     child: Align(
                       alignment:
                           Alignment.topLeft, // Align the number to the top left
