@@ -23,12 +23,21 @@ class HomeView extends StatefulWidget {
 
 class HomeViewContent extends BaseScreen<HomeView, HomeVM>
     with AutomaticKeepAliveClientMixin, HomeVMListeners {
+  late final TextEditingController _inputController = TextEditingController();
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      viewModel?.refresh();
+      //viewModel?.refresh("");
+      viewModel?.getProducts("");
     });
+  }
+
+  Future<void> _refresh() async {
+    // Simulate a fetch operation
+    await Future.delayed(const Duration(seconds: 2));
+    // Add new data or update existing data here
+    viewModel?.getProducts("");
   }
 
   @override
@@ -41,11 +50,16 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
         child: Column(
           children: [
             InputField(
+              controller: _inputController,
               hintText: 'Search products...',
               paddingVertical: 15,
               radius: 10,
+              onEndIconClicked: () {
+                _inputController.clear();
+                viewModel?.getProducts("");
+              },
               onTapOutside: () => Get.focusScope?.unfocus(),
-              onChange: (value) => {},
+              onChange: (value) => {viewModel?.getProducts(value)},
               endIcon: Icon(
                 Icons.clear,
                 color: context.theme.colorScheme.onInverseSurface,
@@ -54,30 +68,34 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
             ),
             20.marginVertical,
             Expanded(
-              child: Consumer<HomeVM>(
-                builder: (context, value, child) {
-                  return value.products.isEmpty == true
-                      ? const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: NoDataWidget())
-                      : ListView.separated(
-                          shrinkWrap: true,
-                          physics: const BouncingScrollPhysics(),
-                          itemCount: value.products.length,
-                          padding: EdgeInsets.zero,
-                          separatorBuilder: (context, index) =>
-                              25.marginVertical,
-                          itemBuilder: (context, index) => GestureDetector(
-                                onTap: () {
-                                  gotoScreen(Routes.PRODUCT_DETAIL, arguments: {
-                                    'product': value.products[index],
-                                  });
-                                },
-                                child: _getItem(index, value.products[index]),
-                              ));
-                },
-              ),
-            ),
+                child: RefreshIndicator(
+                    onRefresh: _refresh,
+                    child: Consumer<HomeVM>(
+                      builder: (context, value, child) {
+                        return value.products.isEmpty == true
+                            ? const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: NoDataWidget())
+                            : ListView.separated(
+                                shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: value.products.length,
+                                padding: EdgeInsets.zero,
+                                separatorBuilder: (context, index) =>
+                                    25.marginVertical,
+                                itemBuilder: (context, index) =>
+                                    GestureDetector(
+                                  onTap: () {
+                                    gotoScreen(Routes.PRODUCT_DETAIL,
+                                        arguments: {
+                                          'product': value.products[index],
+                                        });
+                                  },
+                                  child: _getItem(index, value.products[index]),
+                                ),
+                              );
+                      },
+                    ))),
           ],
         ),
       ),
@@ -88,7 +106,7 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
     return ConstrainedBox(
       constraints: const BoxConstraints(
         minHeight: 60.0, // Minimum height
-        maxHeight: 130.0, // Maximum height
+        maxHeight: 140.0, // Maximum height
       ),
       child: IntrinsicHeight(
         child: Container(
@@ -169,7 +187,7 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "\$${product.productPrice ?? ""}",
+                                product.productPrice ?? "",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(

@@ -8,26 +8,25 @@ class HomeVM extends BaseViewModel<HomeVMListeners> {
   final HomeRR homeRR = HomeRR();
 
   List<ProductModel> products = [];
-  var product = ProductModel(
-      productId: 1,
-      productName: "Product Name",
-      productDescription:
-          "Lorem Ipsum is simply dummy text of the printing and type setting lorem Ipsum.",
-      productImage:
-          "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSYj-vikGnJNyxtRFw3wG7J6fdo43Wfs8J196yHIukwqfj24W3m",
-      productPrice: "200",
-      productQuantity: "2 Container",
-      categoryTitle: "food cupboard");
-  Future refresh() async {
-    products = await homeRR.getSuperData();
-    print("Products:: $products");
-    // products.add(product);
-    // products.add(product);
-    // products.add(product);
-    // products.add(product);
-    // products.add(product);
-    // products.add(product);
+
+  getProducts(String query) {
+    isLoading = true;
+    showErrorMessage = false;
     notifyListeners();
+    fetchData<List<dynamic>>(
+      abortOnNoInternet: true,
+      remoteMethod: () => homeRR.getSuperData(query),
+      notifyOnEnd: true,
+      showDialogOnError: false,
+      onError: (error, statusCode) {
+        isLoading = false;
+        showErrorMessage = true;
+      },
+      onSuccess: (superData) {
+        isLoading = false;
+        products = superData.whereType<ProductModel>().toList();
+      },
+    );
   }
 
   dataFailed() {

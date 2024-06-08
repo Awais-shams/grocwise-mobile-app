@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
@@ -71,6 +72,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           darkTheme: AppTheme.darkTheme,
           themeMode: ThemeMode.light,
           initialRoute: Routes.splashRoute,
+          builder: BotToastInit(),
+          navigatorObservers: [BotToastNavigatorObserver()],
           getPages: [
             GetPage(name: Routes.splashRoute, page: () => const SplashPage()),
             GetPage(

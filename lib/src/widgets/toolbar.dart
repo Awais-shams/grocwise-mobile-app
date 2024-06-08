@@ -17,11 +17,12 @@ class ToolBar extends StatelessWidget {
     return Container(
       height: Dimensions.TOOLBAR_HEIGHT,
       width: 100.w,
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.bottomCenter,
       padding: EdgeInsets.fromLTRB(
-          Dimensions.TEXT_SIZE_MEDIUM, 0, Dimensions.HORIZONTAL_PADDING, 10),
+          Dimensions.TEXT_SIZE_MEDIUM, 10, Dimensions.HORIZONTAL_PADDING, 5),
       decoration: BoxDecoration(color: context.theme.colorScheme.primary),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Row(
             children: [

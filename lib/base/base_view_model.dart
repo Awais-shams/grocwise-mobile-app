@@ -38,7 +38,6 @@ class BaseViewModel<L extends BaseVMlListeners> extends ChangeNotifier {
       if (showLoader && !LoaderService.isLoaderShowing) {
         LoaderService.showLoader();
       }
-
       BaseResponse? response;
 
       //checking if internet is connected

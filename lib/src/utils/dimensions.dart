@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 mixin Dimensions {
-  static final TOOLBAR_HEIGHT = 60.0;
+  static final TOOLBAR_HEIGHT = 70.0;
   static final AUTH_IMAGE_SIZE_MEDIUM = 30.h;
   static final AUTH_IMAGE_SIZE_LARGE = 40.h;
   static const HORIZONTAL_PADDING = 25.0;

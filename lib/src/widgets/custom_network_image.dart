@@ -59,10 +59,10 @@ class CircularNetworkImage extends StatelessWidget {
                 height: height ?? (radius * 2),
                 width: width ?? (radius * 2),
                 errorWidget: (_, __, ___) =>
-                    Center(child: errorHolder ?? _getErrorWidget()),
+                    Center(child: errorHolder ?? _getBrokenImageError()),
                 placeholder: (_, __) => showPlaceholder
-                    ? (placeHolder ?? _getUserImageError())
-                    : Container(),
+                    ? Image.asset(AppImages.LOADING_GIF)
+                    : (placeHolder ?? _getUserImageError()),
                 fit: fit,
               )
             : showErrorOnNullUrl

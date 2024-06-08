@@ -12,5 +12,7 @@ mixin AppImages {
 
   static const String DUMMY_PRODUCT = "$_basePath/dummy_product.svg";
 
+  static const String LOADING_GIF = "$_basePath/loading.gif";
+
   static String getDummyImage() => DUMMY_PRODUCT;
 }

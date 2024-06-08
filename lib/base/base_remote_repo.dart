@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:grocery_app/main.dart';
 import 'package:grocery_app/src/services/dio_services.dart';
 import 'package:grocery_app/src/utils/constants.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -109,6 +110,46 @@ class BaseRemoteRepo {
           'exception: ${ex.toString()}';
 
       await Sentry.captureException(Exception(message));
+      return getErrorResponse(message: ex.toString());
+    }
+  }
+
+  Future<BaseResponse> getSupaData(String endPoint, String query,
+      String filteredColumn, String orderedColumn, bool ascending) async {
+    try {
+      var response = query.isNotEmpty
+          ? await supabase
+              .from(endPoint)
+              .select('*')
+              .ilike(filteredColumn, '%$query%')
+              .order(orderedColumn, ascending: ascending)
+          : await supabase
+              .from(endPoint)
+              .select('*')
+              .limit(30)
+              .order(orderedColumn, ascending: ascending);
+      var baseResponse = BaseResponse(data: response, error: null, code: 200);
+      return baseResponse;
+    } on DioException catch (ex) {
+      if (ex.type == DioExceptionType.unknown ||
+          ex.type == DioExceptionType.connectionTimeout ||
+          ex.type == DioExceptionType.connectionError ||
+          ex.type == DioExceptionType.receiveTimeout) {
+        return getErrorResponse(message: Constants.INTERNET_ERROR);
+      }
+
+      if (ex.response?.statusCode == 302 || ex.response?.statusCode == 401) {
+        return getErrorResponse(
+            message: Constants.API_SESSION_EXPIRE,
+            error: Constants.API_SESSION_EXPIRE);
+      }
+
+      var message = ex.message;
+
+      await Sentry.captureException(Exception(message));
+      return getErrorResponse(message: ex.message.toString());
+    } on Exception catch (ex) {
+      await Sentry.captureException(Exception(ex));
       return getErrorResponse(message: ex.toString());
     }
   }

@@ -4,7 +4,6 @@ import 'package:grocery_app/base/base_screen.dart';
 import 'package:grocery_app/models/response/product_model.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/colors.dart';
-import 'package:grocery_app/src/utils/constants.dart';
 import 'package:grocery_app/src/utils/dimensions.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/styles.dart';
@@ -12,7 +11,6 @@ import 'package:grocery_app/src/utils/utils.dart';
 import 'package:grocery_app/src/widgets/custom_network_image.dart';
 import 'package:grocery_app/src/widgets/rounded_card.dart';
 import 'package:grocery_app/src/widgets/toolbar.dart';
-import 'package:sizer/sizer.dart';
 
 class ProductDetailView extends StatefulWidget {
   const ProductDetailView({super.key});
@@ -62,10 +60,10 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CircularNetworkImage(
-                          url: Constants.DEFAULT_IMAGE,
+                          url: product?.productImage,
                           radius: 10,
                           applyRadiusOnBottom: true,
-                          height: 20.h,
+                          height: 250,
                           width: Get.width,
                           fit: BoxFit.contain,
                         ),
@@ -96,7 +94,7 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
                             child: RichText(
                               textAlign: TextAlign.start,
                               text: TextSpan(
-                                text: "\$${product?.productPrice}",
+                                text: product?.productPrice,
                                 style: Styles.textStyle(
                                     fontSize: Dimensions.TEXT_SIZE_LARGE,
                                     fontWeight: FontWeight.w500),

@@ -8,17 +8,17 @@ class ProductModel {
       this.productQuantity,
       this.categoryTitle});
 
-  ProductModel.fromJson(dynamic json) {
-    productId = json['_id'];
-    productName = json['product_title'];
-    productDescription = json['product_description'];
-    productImage = json['product_image'];
-    productPrice = json['product_price'];
-    productQuantity = json['product_quantity'];
-    categoryTitle = json['category_title'];
+  ProductModel.fromJson(Map<dynamic, dynamic> json) {
+    productId = json['_id'] as String?;
+    productName = json['product_title'] as String?;
+    productDescription = json['product_description'] as String?;
+    productImage = json['product_image'] as String?;
+    productPrice = json['product_price'] as String?;
+    productQuantity = json['product_quantity'] as String?;
+    categoryTitle = json['category_title'] as String?;
   }
 
-  int? productId;
+  String? productId;
   String? productName;
   String? productDescription;
   String? productImage;
@@ -27,7 +27,7 @@ class ProductModel {
   String? categoryTitle;
 
   ProductModel copyWith(
-          {int? productId,
+          {String? productId,
           String? productName,
           String? productDescription,
           String? productImage,
