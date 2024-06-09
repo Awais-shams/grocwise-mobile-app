@@ -62,3 +62,21 @@ extension IterableExtension on Iterable {
     }
   }
 }
+
+extension RemoveFirstWord on String {
+  String removeFirstWord() {
+    int firstSpaceIndex = indexOf(' ');
+    if (firstSpaceIndex == -1) {
+      // No space found, return empty string
+      return '';
+    }
+    return substring(firstSpaceIndex + 1);
+  }
+
+  String capitalizeFirstLetter() {
+    if (isEmpty) {
+      return this;
+    }
+    return this[0].toUpperCase() + substring(1);
+  }
+}

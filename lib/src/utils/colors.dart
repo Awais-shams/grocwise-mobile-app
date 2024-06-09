@@ -10,10 +10,10 @@ class AppColors {
   static const COLOR_INFO_TEXT_RED = Color(0xff842029);
   static const COLOR_INFO_RED = Color(0xffF8D7D8);
   static const BLUE_EVENT = Color(0xff2076ff);
-  static const BLUE_TOTAL_LANDING = Color(0xff0134A1);
+  static const BLUE_TOTAL_LANDING = Color(0xff0050aa);
   static const ORANGE_EVENT = Color(0xffFB8500);
   static const COLOR_DATABASE = Color(0xff606b83);
-  static const GREEN_PROGRESS = Color(0xff4DC921);
+  static const GREEN_PROGRESS = Color(0xffe4b100);
   static const PRIMARY_COLOR = Color(0xff1A3420);
   static const SECONDARY_COLOR = Color(0xff232323);
   static const TEXT_DESCRIPTION_COLOR = Color(0xffBABABA);
@@ -23,7 +23,7 @@ class AppColors {
 class LightThemeColors {
   static const WHITE = Color(0xffFFFFFF);
   static const SILVER = Color(0xffF8F9F8);
-  static const WHITE_BLUE = Color(0xffE5E9F2);
+  static const WHITE_BLUE = Color(0xffFFF7FC);
   static const BLUE = Color(0xff2E97E6);
 
   static const TEXT_BLACK = Color(0xff000404);

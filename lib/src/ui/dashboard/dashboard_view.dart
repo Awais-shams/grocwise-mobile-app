@@ -39,7 +39,7 @@ class DashboardContent extends BaseScreen<DashboardView, HomeVM>
           child: Scaffold(
             extendBody: true,
             resizeToAvoidBottomInset: false,
-            backgroundColor: context.theme.colorScheme.onSurface,
+            backgroundColor: Get.theme.colorScheme.primaryContainer,
             body: Column(
               children: [
                 ToolBar(screenName: screenName),

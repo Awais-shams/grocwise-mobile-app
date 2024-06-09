@@ -58,8 +58,11 @@ class CircularNetworkImage extends StatelessWidget {
                 imageUrl: url!,
                 height: height ?? (radius * 2),
                 width: width ?? (radius * 2),
-                errorWidget: (_, __, ___) =>
-                    Center(child: errorHolder ?? _getBrokenImageError()),
+                errorWidget: (_, __, ___) {
+                  return _getBrokenImageError();
+
+                  //Center(child: errorHolder ?? _getBrokenImageError());
+                },
                 placeholder: (_, __) => showPlaceholder
                     ? Image.asset(AppImages.LOADING_GIF)
                     : (placeHolder ?? _getUserImageError()),
@@ -72,7 +75,7 @@ class CircularNetworkImage extends StatelessWidget {
     );
   }
 
-  _getBrokenImageError() => SvgPicture.asset(
+  _getBrokenImageError() => Image.network(
         AppImages.getDummyImage(),
         height: height ?? (radius * 2),
         width: width ?? (radius * 2),

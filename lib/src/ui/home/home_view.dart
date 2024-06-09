@@ -8,11 +8,12 @@ import 'package:grocery_app/src/utils/colors.dart';
 import 'package:grocery_app/src/utils/dimensions.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/styles.dart';
+import 'package:grocery_app/src/widgets/circular_button.dart';
 import 'package:grocery_app/src/widgets/custom_network_image.dart';
 import 'package:grocery_app/src/widgets/input_field.dart';
 import 'package:grocery_app/src/widgets/no_data_widget.dart';
+import 'package:grocery_app/src/widgets/rounded_card.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -44,26 +45,33 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
   Widget build(BuildContext context) {
     super.build(context);
     return ColoredBox(
-      color: context.theme.colorScheme.onSurface,
+      color: Get.theme.colorScheme.primaryContainer,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            InputField(
-              controller: _inputController,
-              hintText: 'Search products...',
-              paddingVertical: 15,
-              radius: 10,
-              onEndIconClicked: () {
-                _inputController.clear();
-                viewModel?.getProducts("");
-              },
-              onTapOutside: () => Get.focusScope?.unfocus(),
-              onChange: (value) => {viewModel?.getProducts(value)},
-              endIcon: Icon(
-                Icons.clear,
-                color: context.theme.colorScheme.onInverseSurface,
-                size: 25,
+            Material(
+              elevation: 5.0,
+              shadowColor: Colors.grey,
+              borderRadius: BorderRadius.circular(8.0),
+              child: InputField(
+                controller: _inputController,
+                hintText: 'Search products...',
+                paddingVertical: 15,
+                radius: 10,
+                inputFieldFillColor: Get.theme.colorScheme.onSurface,
+                borderColor: Get.theme.colorScheme.secondary,
+                onEndIconClicked: () {
+                  _inputController.clear();
+                  viewModel?.getProducts("");
+                },
+                onTapOutside: () => Get.focusScope?.unfocus(),
+                onChange: (value) => {viewModel?.getProducts(value)},
+                endIcon: Icon(
+                  Icons.clear,
+                  color: context.theme.colorScheme.onInverseSurface,
+                  size: 25,
+                ),
               ),
             ),
             20.marginVertical,
@@ -82,7 +90,7 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
                                 itemCount: value.products.length,
                                 padding: EdgeInsets.zero,
                                 separatorBuilder: (context, index) =>
-                                    25.marginVertical,
+                                    5.marginVertical,
                                 itemBuilder: (context, index) =>
                                     GestureDetector(
                                   onTap: () {
@@ -103,127 +111,113 @@ class HomeViewContent extends BaseScreen<HomeView, HomeVM>
   }
 
   _getItem(int index, ProductModel product) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        minHeight: 60.0, // Minimum height
-        maxHeight: 140.0, // Maximum height
-      ),
-      child: IntrinsicHeight(
-        child: Container(
-          width: 100.w,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(5)),
-            boxShadow: Styles.getStaticBoxShadow(),
+    return RoundedCard(
+      elevation: 10,
+      shadowColor: context.theme.colorScheme.outline,
+      borderRadius: 10,
+      color: context.theme.colorScheme.onSurface,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            minHeight: 60.0, // Minimum height
+            maxHeight: 190.0, // Maximum height
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CircularNetworkImage(
-                      width: 100,
-                      height: 100,
-                      url: product.productImage,
-                      fit: BoxFit.contain,
-                      radius: 2,
-                    ),
-                    10.marginHorizontal,
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.productName ?? "",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: Dimensions.TEXT_SIZE_LARGE,
-                              color: AppColors.SECONDARY_COLOR,
-                              fontFamily: 'Plus Jakarta Sans',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          5.marginVertical,
-                          RichText(
-                            textAlign: TextAlign.start,
-                            text: TextSpan(
-                              text: "Category: ",
-                              style: Styles.textStyle(
-                                  fontSize: Dimensions.TEXT_SIZE_MEDIUM,
-                                  color: context.theme.colorScheme.primary,
-                                  fontWeight: FontWeight.w500),
-                              children: [
-                                TextSpan(
-                                  text: product.categoryTitle ?? "",
-                                  style: TextStyle(
-                                    fontSize: Dimensions.TEXT_SIZE_SMALL,
-                                    color: context.theme.colorScheme.tertiary,
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          5.marginVertical,
-                          Text(
-                            product.productDescription ?? "",
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: Dimensions.TEXT_SIZE_SMALL,
-                              color: AppColors.TEXT_DESCRIPTION_COLOR,
-                              fontFamily: 'Plus Jakarta Sans',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          5.marginVertical,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
+          child: IntrinsicHeight(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CircularNetworkImage(
+                        width: 100,
+                        height: 100,
+                        url: product.productImage,
+                        fit: BoxFit.scaleDown,
+                        radius: 2,
+                      ),
+                      10.marginHorizontal,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              color: AppColors.GREEN_PROGRESS,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
                                 product.productPrice ?? "",
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
                                 style: TextStyle(
-                                  fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                                  color: AppColors.SECONDARY_COLOR,
+                                  fontSize: 16.sp,
+                                  color: context.theme.colorScheme.onSurface,
                                   fontFamily: 'Plus Jakarta Sans',
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w800,
                                 ),
                               ),
-                              10.marginHorizontal,
-                              Expanded(
-                                child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      product.productQuantity ?? "",
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        fontSize: Dimensions.TEXT_SIZE_NORMAL,
-                                        color:
-                                            context.theme.colorScheme.tertiary,
-                                        fontFamily: 'Plus Jakarta Sans',
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    )),
+                            ),
+                            10.marginVertical,
+                            Text(
+                              product.productName
+                                      ?.removeFirstWord()
+                                      .capitalizeFirstLetter() ??
+                                  "",
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
+                                color: AppColors.SECONDARY_COLOR,
+                                fontFamily: 'Plus Jakarta Sans',
+                                fontWeight: FontWeight.w400,
                               ),
-                            ],
-                          ),
-                          10.marginVertical,
-                        ],
+                            ),
+                            5.marginVertical,
+                            RichText(
+                              textAlign: TextAlign.start,
+                              text: TextSpan(
+                                text: "Category: ",
+                                style: Styles.textStyle(
+                                    fontSize: Dimensions.TEXT_SIZE_MEDIUM,
+                                    color: context.theme.colorScheme.primary,
+                                    fontWeight: FontWeight.w500),
+                                children: [
+                                  TextSpan(
+                                    text: product.categoryTitle
+                                            ?.capitalizeFirstLetter() ??
+                                        "",
+                                    style: TextStyle(
+                                      fontSize: Dimensions.TEXT_SIZE_NORMAL,
+                                      color: context.theme.colorScheme.tertiary,
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            15.marginVertical,
+                            CircularButton(
+                              height: 40,
+                              rectangle: true,
+                              borderRadius: 0,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 40),
+                              title: product.source?.toUpperCase() ?? "",
+                              color: context.theme.colorScheme.primary,
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),

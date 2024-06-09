@@ -46,11 +46,16 @@ class Styles {
       );
   static TextStyle textStyle(
           {Color color = AppColors.SECONDARY_COLOR,
+          TextDecoration decoration = TextDecoration.none,
           double fontSize = 10,
           FontWeight fontWeight = FontWeight.w600}) =>
       TextStyle(
         fontSize: fontSize,
         color: color,
+        decoration: decoration,
+        decorationThickness: 3,
+        decorationColor: color,
+        height: 1.5,
         fontFamily: 'Plus Jakarta Sans',
         fontWeight: fontWeight,
       );

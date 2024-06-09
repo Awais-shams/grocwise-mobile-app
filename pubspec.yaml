@@ -38,7 +38,7 @@ dependencies:
   get: ^4.6.6
   flutter_native_splash: ^2.4.0
   sizer: ^2.0.15
-  flutter_svg: ^2.0.2
+  flutter_svg: ^2.0.10
   provider: ^6.0.5
   bot_toast: ^4.0.3
   dio: ^5.3.3
@@ -49,6 +49,9 @@ dependencies:
   sentry_flutter: ^8.2.0
   supabase_flutter: ^2.5.4
   supabase: ^2.2.0
+  url_launcher: ^6.3.0
+  font_awesome_flutter: ^10.7.0
+
 
 dev_dependencies:
   flutter_test:

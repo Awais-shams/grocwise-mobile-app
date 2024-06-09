@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/base/base_screen.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
@@ -21,125 +22,133 @@ class ContactUsViewContent extends BaseScreen<ContactUsView, HomeVM>
   Widget build(BuildContext context) {
     super.build(context);
     return ColoredBox(
-      color: context.theme.colorScheme.onSurface,
+      color: Get.theme.colorScheme.primaryContainer,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              Constants.CONTACT_US_HEADING,
+              style: Styles.textStyle(
+                fontSize: 26.sp,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            10.marginVertical,
+            SizedBox(
+              width: Get.width,
+              child: RoundedCard(
+                borderRadius: 10,
+                elevation: 10,
+                color: Get.theme.colorScheme.primary,
+                sideColor: Get.theme.colorScheme.primary,
+                child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10, top: 15, right: 10, bottom: 15),
+                    child: Text(
+                      Constants.CONTACT_US_SECOND,
+                      style: Styles.textStyle(
+                          color: context.theme.colorScheme.onSurface,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14.sp),
+                    )),
+              ),
+            ),
+            10.marginVertical,
+            Text(
+              Constants.CONTACT_US_THIRD,
+              style: Styles.textStyle(
+                fontSize: Dimensions.TEXT_SIZE_LARGE,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            contactCard(Icons.email_outlined, Constants.CONTACT_MAIL),
+            10.marginVertical,
+            Text(
+              Constants.CONTACT_US_FOUR,
+              style: Styles.textStyle(
+                fontSize: Dimensions.TEXT_SIZE_LARGE,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            contactCard(FontAwesomeIcons.github, Constants.CONTACT_GITHUB),
+            10.marginVertical,
+            contactCard(FontAwesomeIcons.linkedin, Constants.CONTACT_LINKEDIN,
+                iconColor: context.theme.colorScheme.onSecondaryContainer),
+            10.marginVertical,
+            contactCard(FontAwesomeIcons.medium, Constants.CONTACT_MEDIUM),
+            10.marginVertical,
+            Text(
+              Constants.CONTACT_US_H2,
+              style: Styles.textStyle(
+                fontSize: Dimensions.TEXT_SIZE_LARGE,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            5.marginVertical,
+            Text(Constants.CONTACT_US_H2_TEXT,
+                textAlign: TextAlign.justify,
+                style: Styles.textStyle(
+                  fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
+                  fontWeight: FontWeight.w400,
+                )),
+            5.marginVertical,
+            Text(Constants.CONTACT_US_THANK,
+                textAlign: TextAlign.justify,
+                style: Styles.textStyle(
+                  fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
+                  fontWeight: FontWeight.w400,
+                )),
+            5.marginVertical,
+          ]),
+        ),
+      ),
+    );
+  }
+
+  Widget contactCard(IconData icon, String text, {Color? iconColor}) {
+    return SizedBox(
+      width: Get.width,
+      child: RoundedCard(
+        sideWidth: 1,
+        borderRadius: 10,
+        color: Get.theme.colorScheme.onSurface,
+        sideColor: Get.theme.colorScheme.onSurface,
+        elevation: 10,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                Constants.CONTACT_US_HEADING,
-                style: Styles.textStyle(
-                  fontSize: 26.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              10.marginVertical,
-              SizedBox(
-                width: Get.width,
-                child: RoundedCard(
-                  borderRadius: 10,
-                  color: Get.theme.colorScheme.primary,
-                  sideColor: Get.theme.colorScheme.primary,
+              Container(
+                height: 42,
+                width: 42,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: context.theme.colorScheme.onSurface,
+                    border: Border.all(
+                        color: iconColor ?? context.theme.colorScheme.primary,
+                        width: 1.5)),
+                child: Center(
                   child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 10, top: 15, right: 10, bottom: 15),
-                      child: Text(
-                        Constants.CONTACT_US_SECOND,
-                        style: Styles.textStyle(
-                            color: context.theme.colorScheme.onSurface,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14.sp),
-                      )),
-                ),
-              ),
-              10.marginVertical,
-              Text(
-                Constants.CONTACT_US_THIRD,
-                style: Styles.textStyle(
-                    fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                    fontWeight: FontWeight.w400),
-              ),
-              SizedBox(
-                width: Get.width,
-                child: RoundedCard(
-                  sideWidth: 1,
-                  borderRadius: 10,
-                  color: Get.theme.colorScheme.onSurface,
-                  sideColor: Get.theme.colorScheme.primary,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 5.0),
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.theme.colorScheme.onSurface,
-                              border: Border.all(
-                                  color: context.theme.colorScheme.primary)),
-                          child: Center(
-                            child: Icon(
-                              Icons.email_outlined,
-                              color: context.theme.colorScheme.onPrimary,
-                            ),
-                          ),
-                        ),
-                        10.marginHorizontal,
-                        Text(
-                          "mail@groxwise.com",
-                          style: Styles.textStyle(
-                              fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                    padding: const EdgeInsets.all(5.0),
+                    child: Icon(
+                      icon,
+                      color: iconColor ?? context.theme.colorScheme.primary,
                     ),
                   ),
                 ),
               ),
-              10.marginVertical,
-              SizedBox(
-                width: Get.width,
-                child: RoundedCard(
-                  sideWidth: 1,
-                  borderRadius: 10,
-                  color: Get.theme.colorScheme.onSurface,
-                  sideColor: Get.theme.colorScheme.primary,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 5.0),
-                          height: 35,
-                          width: 35,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: context.theme.colorScheme.onSurface,
-                              border: Border.all(
-                                  color: context.theme.colorScheme.primary)),
-                          child: Center(
-                            child: Icon(
-                              Icons.phone,
-                              color: context.theme.colorScheme.onPrimary,
-                            ),
-                          ),
-                        ),
-                        10.marginHorizontal,
-                        Text(
-                          "+123-456-7898727",
-                          style: Styles.textStyle(
-                              fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
+              10.marginHorizontal,
+              Expanded(
+                child: SelectableText(
+                  text,
+                  textAlign: TextAlign.start,
+                  style: Styles.textStyle(
+                      fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ],

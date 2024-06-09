@@ -102,7 +102,7 @@ class AppTheme {
       onSurface: LightThemeColors.WHITE,
       surface: Colors.grey[800]!,
       onInverseSurface: LightThemeColors.COLOR_DISABLE,
-      onBackground: LightThemeColors.SILVER_DARK,
+      onSurfaceVariant: LightThemeColors.SILVER_DARK,
       onPrimaryContainer: LightThemeColors.WHITE_BLUE,
       onSecondaryContainer: LightThemeColors.BLUE,
     ),

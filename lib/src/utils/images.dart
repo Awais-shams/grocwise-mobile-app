@@ -10,7 +10,8 @@ mixin AppImages {
 
   static const String PHONE_SELECTED = "$_basePath/phone_selected.svg";
 
-  static const String DUMMY_PRODUCT = "$_basePath/dummy_product.svg";
+  static const String DUMMY_PRODUCT =
+      "https://digitalcontent.api.tesco.com/v2/media/ghs-mktg/b0b04216-fa73-466d-a9d7-c9fcfa1ce9b3/no-image.jpeg";
 
   static const String LOADING_GIF = "$_basePath/loading.gif";
 
