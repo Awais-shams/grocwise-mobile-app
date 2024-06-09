@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:grocery_app/base/base_screen.dart';
+import 'package:grocery_app/models/helpers/callback_type.dart';
 import 'package:grocery_app/src/ui/home/home_vm.dart';
 import 'package:grocery_app/src/utils/constants.dart';
 import 'package:grocery_app/src/utils/dimensions.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/styles.dart';
+import 'package:grocery_app/src/utils/utils.dart';
 import 'package:grocery_app/src/widgets/rounded_card.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactUsView extends StatefulWidget {
   const ContactUsView({super.key});
@@ -18,6 +21,19 @@ class ContactUsView extends StatefulWidget {
 
 class ContactUsViewContent extends BaseScreen<ContactUsView, HomeVM>
     with AutomaticKeepAliveClientMixin {
+  void _launchURL(String text) async {
+    print("URLS::$text");
+    Uri uri = Uri.parse(text);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    } else {
+      Utils.showSnackbar("Unable to open URL", CallbackType.ERROR);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -72,12 +88,24 @@ class ContactUsViewContent extends BaseScreen<ContactUsView, HomeVM>
                 fontWeight: FontWeight.w600,
               ),
             ),
-            contactCard(FontAwesomeIcons.github, Constants.CONTACT_GITHUB),
+            contactCard(
+              FontAwesomeIcons.github,
+              Constants.CONTACT_GITHUB,
+              openUrl: (p0) => _launchURL(p0),
+            ),
             10.marginVertical,
-            contactCard(FontAwesomeIcons.linkedin, Constants.CONTACT_LINKEDIN,
-                iconColor: context.theme.colorScheme.onSecondaryContainer),
+            contactCard(
+              FontAwesomeIcons.linkedin,
+              Constants.CONTACT_LINKEDIN,
+              iconColor: context.theme.colorScheme.onSecondaryContainer,
+              openUrl: (p0) => _launchURL(p0),
+            ),
             10.marginVertical,
-            contactCard(FontAwesomeIcons.medium, Constants.CONTACT_MEDIUM),
+            contactCard(
+              FontAwesomeIcons.medium,
+              Constants.CONTACT_MEDIUM,
+              openUrl: (p0) => _launchURL(p0),
+            ),
             10.marginVertical,
             Text(
               Constants.CONTACT_US_H2,
@@ -107,7 +135,8 @@ class ContactUsViewContent extends BaseScreen<ContactUsView, HomeVM>
     );
   }
 
-  Widget contactCard(IconData icon, String text, {Color? iconColor}) {
+  Widget contactCard(IconData icon, String text,
+      {Color? iconColor, Function(String)? openUrl}) {
     return SizedBox(
       width: Get.width,
       child: RoundedCard(
@@ -144,6 +173,7 @@ class ContactUsViewContent extends BaseScreen<ContactUsView, HomeVM>
               10.marginHorizontal,
               Expanded(
                 child: SelectableText(
+                  onTap: () => openUrl?.call(text),
                   text,
                   textAlign: TextAlign.start,
                   style: Styles.textStyle(

@@ -7,6 +7,7 @@ import 'package:grocery_app/src/utils/dimensions.dart';
 import 'package:grocery_app/src/utils/extensions.dart';
 import 'package:grocery_app/src/utils/styles.dart';
 import 'package:grocery_app/src/widgets/bullet_text_widget.dart';
+import 'package:grocery_app/src/widgets/custom_spannable.dart';
 import 'package:grocery_app/src/widgets/spannable_text.dart';
 
 class AboutUsView extends StatefulWidget {
@@ -27,15 +28,13 @@ class AboutUsViewContent extends BaseScreen<AboutUsView, HomeVM>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-              child: Text(Constants.ABOUT_H1_TEXT,
-                  textAlign: TextAlign.justify,
-                  style: Styles.textStyle(
-                    fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                    fontWeight: FontWeight.w400,
-                  )),
-            ),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                child: CustomSpannableText(
+                  textAfter: Constants.ABOUT_H1_TEXT_2,
+                  textBefore: "",
+                  textBold: Constants.ABOUT_H1_TEXT_1,
+                )),
             5.marginVertical,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -87,9 +86,11 @@ class AboutUsViewContent extends BaseScreen<AboutUsView, HomeVM>
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: SpannableText(
-                  textBeforeLink: Constants.ABOUT_H4_TEXT_1,
-                  linkText: Constants.ABOUT_H4_TEXT_2,
-                  textAfterLink: Constants.ABOUT_H4_TEXT_3),
+                textBeforeLink: Constants.ABOUT_H4_TEXT_1,
+                linkText: Constants.ABOUT_H4_TEXT_2,
+                textAfterLink: Constants.ABOUT_H4_TEXT_3,
+                boldText: Constants.ABOUT_H4_TEXT_2_1,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -134,15 +135,13 @@ class AboutUsViewContent extends BaseScreen<AboutUsView, HomeVM>
                   )),
             ),
             5.marginVertical,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(Constants.ABOUT_H7_TEXT,
-                  textAlign: TextAlign.justify,
-                  style: Styles.textStyle(
-                    fontSize: Dimensions.TEXT_SIZE_SEMI_LARGE,
-                    fontWeight: FontWeight.w400,
-                  )),
-            ),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: CustomSpannableText(
+                  textAfter: "",
+                  textBefore: Constants.ABOUT_H7_TEXT,
+                  textBold: Constants.ABOUT_H7_TEXT_1,
+                )),
             5.marginVertical,
           ],
         ),

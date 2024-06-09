@@ -126,8 +126,8 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
                               RoundedCard(
                                 borderRadius: 10,
                                 elevation: 10,
-                                color: context.theme.colorScheme.onSurface,
-                                sideColor: AppColors.BORDER_COLOR,
+                                color: AppColors.GREEN_PROGRESS,
+                                sideColor: AppColors.GREEN_PROGRESS,
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 20, top: 15, right: 20, bottom: 15),
@@ -135,13 +135,19 @@ class ProductDetailViewContent extends BaseScreen<ProductDetailView, HomeVM>
                                     textAlign: TextAlign.start,
                                     text: TextSpan(
                                       text: product?.productPrice,
-                                      style: Styles.textStyle(
-                                          fontSize: Dimensions.TEXT_SIZE_LARGE,
-                                          fontWeight: FontWeight.w500),
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        color:
+                                            context.theme.colorScheme.onSurface,
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        fontWeight: FontWeight.w800,
+                                      ),
                                       children: [
                                         TextSpan(
                                           text: " /Item ",
                                           style: Styles.textStyle(
+                                              color: context
+                                                  .theme.colorScheme.onSurface,
                                               fontSize: Dimensions
                                                   .TEXT_SIZE_SEMI_LARGE,
                                               fontWeight: FontWeight.w400),
